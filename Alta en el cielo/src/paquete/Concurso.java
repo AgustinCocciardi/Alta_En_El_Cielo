@@ -20,7 +20,7 @@ public class Concurso {
 		}
 	}
 	
-	public int getCarretel() {
+	public int getLargoCarretel() {
 		return this.largoCarretel;
 	}
 	
@@ -67,7 +67,7 @@ public class Concurso {
 		int escuelaGanadora = this.escuelaConBanderaMasLarga();
 		salida.println(escuelaGanadora + " " + this.banderas[escuelaGanadora].getLongitudTotal());
 		salida.println(this.escuelaConBanderaConMasRetazos());
-		salida.println(this.getCarretel());
+		salida.println(this.getLargoCarretel());
 		//
 	}
 	
