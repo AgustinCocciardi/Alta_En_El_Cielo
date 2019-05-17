@@ -7,13 +7,11 @@ public class Bandera {
 	private int longitudProximoRetazo;
 	private int longitudTotal;
 	private int retazos;
-	private ArrayList<Integer> subsecuencias; 
 	
 	public Bandera(int longitudRetazo) {
 		this.longitudProximoRetazo = longitudRetazo;
 		this.longitudTotal = 0;
 		this.retazos = 0;
-		this.subsecuencias = new ArrayList<Integer>();
 	}
 	
 	public int getLongitudProximoRetazo() {
@@ -32,7 +30,7 @@ public class Bandera {
 		int numero = 0, i = 0;
 		String retazo = Integer.toString(longitudProximoRetazo);
 		while( i < retazo.length() ) {
-			numero += retazo.charAt(i++);
+			numero += retazo.charAt(i++) - 48;
 		}
 		return numero;
 	}
@@ -40,10 +38,7 @@ public class Bandera {
 	public void cocerRetazo() {
 		this.retazos++;
 		this.longitudTotal += this.longitudProximoRetazo;
-		this.subsecuencias.add(this.longitudProximoRetazo);
 		this.longitudProximoRetazo += this.obtenerProximaLongitud();
 	}
-	
-	
 	
 }

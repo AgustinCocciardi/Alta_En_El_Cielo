@@ -26,15 +26,23 @@ public class Concurso {
 	
 	private void cocerBanderas() {
 		boolean puedeCocer = true;
+		int []escuelaPuedeCocer = new int[this.banderas.length];
+		for(int i=0; i<escuelaPuedeCocer.length; i++) {
+			escuelaPuedeCocer[i] = 1;
+		}
 		int noPuedeCocer = 0;
 		int i=0;
 		while(puedeCocer == true) {
-			if(this.largoCarretel > this.banderas[i].getLongitudProximoRetazo()) {
+			if(this.largoCarretel > this.banderas[i].getLongitudProximoRetazo() && 
+				escuelaPuedeCocer[i] == 1) {
 				this.largoCarretel -= this.banderas[i].getLongitudProximoRetazo();
 				this.banderas[i].cocerRetazo();
 			}
 			else {
-				noPuedeCocer++;
+				if(escuelaPuedeCocer[i] == 1) {
+					noPuedeCocer++;
+					escuelaPuedeCocer[i] = 0;
+				}
 			}
 			i++;
 			if(i == this.banderas.length)
@@ -65,10 +73,9 @@ public class Concurso {
 	public void resolver(PrintWriter salida) {
 		this.cocerBanderas();
 		int escuelaGanadora = this.escuelaConBanderaMasLarga();
-		salida.println(escuelaGanadora + " " + this.banderas[escuelaGanadora].getLongitudTotal());
+		salida.println(escuelaGanadora + " " + this.banderas[escuelaGanadora-1].getLongitudTotal());
 		salida.println(this.escuelaConBanderaConMasRetazos());
 		salida.println(this.getLargoCarretel());
-		//
 	}
 	
 	public static void main(String[] args) throws IOException {
